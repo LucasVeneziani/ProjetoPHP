@@ -8,9 +8,18 @@ $dbFile = __DIR__ . '/tasks.sqlite';
 $pdo = new PDO('sqlite:' . $dbFile);
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+// $pdo->exec("CREATE TABLE IF NOT EXISTS tasks (
+//     id INTEGER PRIMARY KEY AUTOINCREMENT,
+//     title TEXT NOT NULL,
+//     done INTEGER DEFAULT 0
+// )");
+
 $pdo->exec("CREATE TABLE IF NOT EXISTS tasks (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     title TEXT NOT NULL,
+    descricao TEXT,
+    dataVenc DATE,
+    responsavel VARCHAR,
     done INTEGER DEFAULT 0
 )");
 
@@ -18,15 +27,24 @@ $pdo->exec("CREATE TABLE IF NOT EXISTS tasks (
 $error = '';
 
 // Criar nova tarefa
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['title'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['title']))
+{
     $title = trim($_POST['title']);
+    $descricao = trim($_POST['descricao']);
+    $dataVenc = trim($_POST['dataVenc']);
+    $responsavel = trim($_POST['responsavel']);
     
-    // Regra de negócio solta no meio do arquivo
+    // Regra de negócio solta no meio do arquivo 
     if (empty($title)) {
         $error = "O título da tarefa não pode estar vazio!";
     } else {
-        $stmt = $pdo->prepare("INSERT INTO tasks (title) VALUES (:title)");
-        $stmt->bindValue(':title', $title);
+        $stmt = $pdo->prepare("INSERT INTO tasks (title, descricao, dataVenc, responsavel) VALUES (:title, :descricao, :dataVenc, :responsavel)");
+        $stmt->bindValue(':title', $title, PDO::PARAM_STR);
+        $stmt->bindValue(':descricao', $descricao, PDO::PARAM_STR);
+        $stmt->bindValue(':dataVenc', $dataVenc, PDO::PARAM_STR);
+        $stmt->bindValue(':responsavel', $responsavel, PDO::PARAM_STR);
+        // $stmt = $pdo->prepare("INSERT INTO tasks (title) VALUES (:title)");
+        // $stmt->bindValue(':title', $title);
         $stmt->execute();
         
         // Redirecionamento misturado com a lógica
@@ -52,6 +70,7 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
 // 3. BUSCA DE DADOS MISTURADA COM A VISUALIZAÇÃO
 $stmt = $pdo->query("SELECT * FROM tasks ORDER BY id DESC");
 $tasks = $stmt->fetchAll(PDO::FETCH_ASSOC);
+// var_dump($tasks)
 ?>
 
 <!DOCTYPE html>
@@ -86,6 +105,9 @@ $tasks = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <form method="POST" action="index.php" class="form-group">
         <input type="text" name="title" placeholder="O que precisa ser feito?" autocomplete="off">
+        <input type="text" name="descricao" placeholder="O que a tarefa faz" autocomplete="off">
+        <input type="date" name="dataVenc" placeholder="O dia que vence" autocomplete="off">
+        <input type="text" name="responsavel" placeholder="O que precisa ser feito?" autocomplete="off">
         <button type="submit">Adicionar</button>
     </form>
 
@@ -93,6 +115,9 @@ $tasks = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <?php foreach ($tasks as $task): ?>
             <li class="<?php echo $task['done'] ? 'done' : ''; ?>">
                 <span><?php echo htmlspecialchars($task['title']); ?></span>
+                <span><?php echo htmlspecialchars($task['descricao']); ?></span>
+                <span><?php echo htmlspecialchars($task['dataVenc']); ?></span>
+                <span><?php echo htmlspecialchars($task['responsavel']); ?></span>
                 
                 <div class="actions">
                     <?php if (!$task['done']): ?>
