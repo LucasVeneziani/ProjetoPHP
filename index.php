@@ -78,20 +78,17 @@ $tasks = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <title>Task Master - Spaghetti</title>
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f3f4f6; color: #333; display: flex; justify-content: center; padding-top: 50px; }
         .container { background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); width: 100%; max-width: 500px; }
         h1 { font-size: 1.5rem; text-align: center; border-bottom: 2px solid #eee; padding-bottom: 10px; }
         .error { color: #dc2626; background: #fee2e2; padding: 10px; border-radius: 4px; font-size: 0.9rem; }
-        .form-group { display: flex; gap: 10px; margin-top: 20px; margin-bottom: 20px; }
-        input[type="text"] { flex: 1; padding: 10px; border: 1px solid #ccc; border-radius: 4px; }
-        button { background: #2563eb; color: white; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer; }
-        button:hover { background: #1d4ed8; }
         ul { list-style: none; padding: 0; }
         li { display: flex; justify-content: space-between; align-items: center; padding: 12px; border-bottom: 1px solid #eee; }
         li.done span { text-decoration: line-through; color: #9ca3af; }
-        .actions a { text-decoration: none; margin-left: 10px; cursor: pointer; }
+        .actions a { flex: 1; text-decoration: none; margin-left: 2px; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -103,27 +100,27 @@ $tasks = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <div class="error"><?php echo $error; ?></div>
     <?php endif; ?>
 
-    <form method="POST" action="index.php" class="form-group">
-        <input type="text" name="title" placeholder="O que precisa ser feito?" autocomplete="off">
-        <input type="text" name="descricao" placeholder="O que a tarefa faz" autocomplete="off">
-        <input type="date" name="dataVenc" placeholder="O dia que vence" autocomplete="off">
-        <input type="text" name="responsavel" placeholder="O que precisa ser feito?" autocomplete="off">
-        <button type="submit">Adicionar</button>
+    <form method="POST" action="index.php" class="grid grid-cols-2 gap-2 p-1 mt-2 mb-2">
+        <input type="text" name="title" placeholder="O que precisa ser feito?" autocomplete="off" class="flex p-2 rounded border">
+        <input type="text" name="descricao" placeholder="O que a tarefa faz" autocomplete="off" class="flex p-2 rounded border">
+        <input type="date" name="dataVenc" placeholder="O dia que vence" autocomplete="off" class="hover:cursor-text flex p-2 rounded border">
+        <input type="text" name="responsavel" placeholder="O que precisa ser feito?" autocomplete="off" class="flex p-2 rounded border">
+        <button type="submit" class="bg-blue-700 hover:bg-blue-800 text-white pt-2 pb-2 pl-4 pr-4 rounded">Adicionar</button>
     </form>
 
-    <ul>
+    <ul class="mt-4">
         <?php foreach ($tasks as $task): ?>
-            <li class="<?php echo $task['done'] ? 'done' : ''; ?>">
-                <span><?php echo htmlspecialchars($task['title']); ?></span>
-                <span><?php echo htmlspecialchars($task['descricao']); ?></span>
-                <span><?php echo htmlspecialchars($task['dataVenc']); ?></span>
-                <span><?php echo htmlspecialchars($task['responsavel']); ?></span>
-                
+            <li class="border-2 border-gray-300 <?php echo $task['done'] ? 'done' : ''; ?>">
+                <span class="border-1 border-gray-300 p-2"><?php echo htmlspecialchars($task['title']); ?></span>
+                <span class="border-1 border-gray-300 p-2"><?php echo htmlspecialchars($task['descricao']); ?></span>
+                <span class="border-1 border-gray-300 p-2"><?php echo htmlspecialchars($task['dataVenc']); ?></span>
+                <span class="border-1 border-gray-300 p-2"><?php echo htmlspecialchars($task['responsavel']); ?></span>
+
                 <div class="actions">
                     <?php if (!$task['done']): ?>
-                        <a href="?action=complete&id=<?php echo $task['id']; ?>" title="Concluir">✅</a>
+                        <a class="border-1 border-green-500 p-2 rounded-full" href="?action=complete&id=<?php echo $task['id']; ?>" title="Concluir">✅</a>
                     <?php endif; ?>
-                    <a href="?action=delete&id=<?php echo $task['id']; ?>" onclick="return confirm('Tem certeza que deseja excluir esta tarefa?');" title="Excluir">❌</a>
+                    <a class="border-1 border-red-500 p-2 rounded-full" href="?action=delete&id=<?php echo $task['id']; ?>" onclick="return confirm('Tem certeza que deseja excluir esta tarefa?');" title="Excluir">❌</a>
                 </div>
             </li>
         <?php endforeach; ?>
