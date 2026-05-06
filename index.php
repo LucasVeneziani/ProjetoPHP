@@ -85,7 +85,6 @@ $tasks = $stmt->fetchAll(PDO::FETCH_ASSOC);
         .container { background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); width: 100%; max-width: 500px; }
         h1 { font-size: 1.5rem; text-align: center; border-bottom: 2px solid #eee; padding-bottom: 10px; }
         .error { color: #dc2626; background: #fee2e2; padding: 10px; border-radius: 4px; font-size: 0.9rem; }
-        ul { list-style: none; padding: 0; }
         li { display: flex; justify-content: space-between; align-items: center; padding: 12px; border-bottom: 1px solid #eee; }
         li.done span { text-decoration: line-through; color: #9ca3af; }
         .actions a { flex: 1; text-decoration: none; margin-left: 2px; cursor: pointer; }
@@ -100,7 +99,7 @@ $tasks = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <div class="error"><?php echo $error; ?></div>
     <?php endif; ?>
 
-    <form method="POST" action="index.php" class="flex flex-wrap sm:flex-nowrap dm: items-center justify-center gap-2 p-1 mt-2 mb-2">
+    <form method="POST" action="index.php" class="flex flex-wrap items-center justify-center gap-2 p-1 mt-2 mb-2">
         <input type="text" name="title" placeholder="O que precisa ser feito?" autocomplete="off" class="flex p-2 w-50 rounded border">
         <input type="text" name="descricao" placeholder="O que a tarefa faz" autocomplete="off" class="flex p-2 w-50 rounded border">
         <input type="date" name="dataVenc" placeholder="O dia que vence" autocomplete="off" class="hover:cursor-text flex p-2 w-50 rounded border">
@@ -108,7 +107,7 @@ $tasks = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <button type="submit" class="bg-blue-700 hover:bg-blue-800 text-white pt-2 pb-2 pl-4 pr-4 w-40 rounded">Adicionar</button>
     </form>
 
-    <ul class="mt-4">
+    <ul class="mt-4 divide-y divide-gray-200">
         <?php foreach ($tasks as $task): ?>
             <li class="border-2 border-gray-300 <?php echo $task['done'] ? 'done' : ''; ?>">
                 <span class="border-1 border-gray-300 p-2"><?php echo htmlspecialchars($task['title']); ?></span>
