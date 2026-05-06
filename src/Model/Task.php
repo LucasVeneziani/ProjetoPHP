@@ -30,6 +30,7 @@ class Task {
 
     public function complete($id) {
         return $this->pdo->exec("UPDATE tasks SET done = 1 WHERE id = " . (int)$id);
+        
     }
 
     public function delete($id) {
