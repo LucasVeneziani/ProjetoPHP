@@ -1,0 +1,45 @@
+SoC: Separation of Concerns (separação de preocupações)
+
+Regra de ouro: Cada parte do sistema deve ter apenas uma responsabilidade
+
+
+Model: O Cérebro. Regras de negócio e dados
+
+View: A interface. Exibe os dados para o usuário
+
+Controller: O Maestro. Intercepta requisições e coordena o fluxo
+
+View: A mesa e o prato
+
+Controller: O garçom
+
+Model: O chefe de cozinha
+
+Testabilidade (TDD):
+
+Regras de negócio isoladas no Model permitem testes unitários rápidos sem depender do navegador
+
+Versionamento (GitHub): Desenvolvedor Front-end altera a View, Back-end altera o Model
+Fim dos temidos Merge Conflicts destrutivos
+
+
+Desvantagens do MVC:
+
+Boilerplate: muitos arquivos criados para tarefas simples
+
+O "Fat Controller" (Controlador Obeso): Tendencia de colocar regras de negócio no controller por preguiça.
+
+Acoplamento Residual: O Controller ainda precisa saber qual View renderizar
+
+
+
+
+
+Evoluindo a Arquitetura
+
+
+E quando o Controller ficar grande demais?
+
+
+Como inverter o controle usando Padrões GoF
+(Interfaces)?
