@@ -81,7 +81,7 @@ $tasks = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <title>Task Master - Spaghetti</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f3f4f6; color: #333; display: flex; justify-content: center; padding-top: 50px; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f3f4f6; color: #333; display: flex; justify-content: center; align-items: center; height: 100vh; }
         .container { background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); width: 100%; max-width: 500px; }
         h1 { font-size: 1.5rem; text-align: center; border-bottom: 2px solid #eee; padding-bottom: 10px; }
         .error { color: #dc2626; background: #fee2e2; padding: 10px; border-radius: 4px; font-size: 0.9rem; }
@@ -100,12 +100,12 @@ $tasks = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <div class="error"><?php echo $error; ?></div>
     <?php endif; ?>
 
-    <form method="POST" action="index.php" class="grid grid-cols-2 gap-2 p-1 mt-2 mb-2">
-        <input type="text" name="title" placeholder="O que precisa ser feito?" autocomplete="off" class="flex p-2 rounded border">
-        <input type="text" name="descricao" placeholder="O que a tarefa faz" autocomplete="off" class="flex p-2 rounded border">
-        <input type="date" name="dataVenc" placeholder="O dia que vence" autocomplete="off" class="hover:cursor-text flex p-2 rounded border">
-        <input type="text" name="responsavel" placeholder="O que precisa ser feito?" autocomplete="off" class="flex p-2 rounded border">
-        <button type="submit" class="bg-blue-700 hover:bg-blue-800 text-white pt-2 pb-2 pl-4 pr-4 rounded">Adicionar</button>
+    <form method="POST" action="index.php" class="flex flex-wrap sm:flex-nowrap dm: items-center justify-center gap-2 p-1 mt-2 mb-2">
+        <input type="text" name="title" placeholder="O que precisa ser feito?" autocomplete="off" class="flex p-2 w-50 rounded border">
+        <input type="text" name="descricao" placeholder="O que a tarefa faz" autocomplete="off" class="flex p-2 w-50 rounded border">
+        <input type="date" name="dataVenc" placeholder="O dia que vence" autocomplete="off" class="hover:cursor-text flex p-2 w-50 rounded border">
+        <input type="text" name="responsavel" placeholder="O que precisa ser feito?" autocomplete="off" class="flex p-2 w-50 rounded border">
+        <button type="submit" class="bg-blue-700 hover:bg-blue-800 text-white pt-2 pb-2 pl-4 pr-4 w-40 rounded">Adicionar</button>
     </form>
 
     <ul class="mt-4">
