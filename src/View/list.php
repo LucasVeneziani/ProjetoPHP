@@ -41,7 +41,7 @@
         <?php foreach ($tasks as $task): ?>
             <li class="<?php echo $task['done'] ? 'done' : ''; ?>">
                 <div>
-                    <strong><?php echo htmlspecialchars($task['title']); ?></strong> | responsavel: <?php echo $task['responsavel']; ?><br>
+                    <strong><?php echo htmlspecialchars($task['title']); ?></strong> | Responsavel: <?php echo $task['responsavel']; ?><br>
                     <small><?php echo htmlspecialchars($task['descricao']); ?> | Vence em: <?php echo $task['dataVenc']; ?></small>
                 
                 </div>
