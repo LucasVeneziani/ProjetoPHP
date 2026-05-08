@@ -10,13 +10,12 @@
         .container { background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); width: 100%; max-width: 500px; }
         h1 { font-size: 1.5rem; text-align: center; border-bottom: 2px solid #eee; padding-bottom: 10px; }
         .error { color: #dc2626; background: #fee2e2; padding: 10px; border-radius: 4px; font-size: 0.9rem; }
-        .form-group { display: flex; gap: 10px; margin-top: 20px; margin-bottom: 20px; }
         input[type="text"] { flex: 1; padding: 10px; border: 1px solid #ccc; border-radius: 4px; }
         button { background: #2563eb; color: white; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer; }
         button:hover { background: #1d4ed8; }
         ul { list-style: none; padding: 0; }
         li { display: flex; justify-content: space-between; align-items: center; padding: 12px; border-bottom: 1px solid #eee; }
-        li.done span { text-decoration: line-through; color: #9ca3af; }
+        li.done strong, small { text-decoration: line-through; color: #9ca3af; }
         .actions a { text-decoration: none; margin-left: 10px; cursor: pointer; }
     </style>
 </head>
@@ -30,11 +29,11 @@
 
     <!-- O formulário agora aponta para a action 'create' -->
 
-        <form method="POST" action="index.php?action=create" class="form-group">
-        <input type="text" name="title" placeholder="O titulo" autocomplete="off">
-        <input type="text" name="descricao" placeholder="Qual a descrição" autocomplete="off">
-        <input type="date" name="dataVenc" placeholder="Data de vencimento" autocomplete="off">
-        <input type="text" name="responsavel" placeholder="Quem é o responsavel" autocomplete="off">
+    <form method="POST" action="index.php?action=create" class="flex flex-wrap justify-center items-center gap-2 mt-5 mb-5">
+        <input type="text" name="title" placeholder="O titulo" autocomplete="off" class="flex p-2 border border-gray-300 rounded">
+        <input type="text" name="descricao" placeholder="Qual a descrição" autocomplete="off" class="flex p-2 border border-gray-300 rounded">
+        <input type="date" name="dataVenc" placeholder="Data de vencimento" autocomplete="off" class="flex p-2 border border-gray-300 rounded">
+        <input type="text" name="responsavel" placeholder="Quem é o responsavel" autocomplete="off" class="flex p-2 border border-gray-300 rounded">
         <button type="submit">Adicionar</button>
     </form>
 
