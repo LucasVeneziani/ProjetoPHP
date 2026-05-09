@@ -40,9 +40,9 @@
                 </div>
                 <div>
                     <?php if (!$task['done']): ?>
-                        <a class="border-2 border-green-500 hover:bg-green-500 p-2 ml-2 rounded-full" href="index.php?action=complete&id=<?php echo $task['id']; ?>">✅</a>
+                        <a class="border-2 border-green-500 bg-green-100 hover:bg-green-200 p-2 ml-2 rounded-full" href="index.php?action=complete&id=<?php echo $task['id']; ?>">✅</a>
                     <?php endif; ?>
-                    <a class="border-2 border-red-500 hover:bg-red-500 p-2 ml-2 rounded-full" href="index.php?action=delete&id=<?php echo $task['id']; ?>">❌</a>
+                    <a class="border-2 border-red-500 bg-red-100 hover:bg-red-200 p-2 ml-2 rounded-full" href="index.php?action=delete&id=<?php echo $task['id']; ?>">❌</a>
                 </div>
             </li>
         <?php endforeach; ?>
