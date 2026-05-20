@@ -65,11 +65,16 @@ class TaskViewModel {
             const li = document.createElement('li');
             li.className = task.done ? 'done' : '';
             li.innerHTML = `
-                <strong>${task.title}</strong> | Responsavel: ${task.responsavel}<br>
-                <small>${task.descricao} | Vence em: ${task.dataVenc} </small>
-                <button onclick="vm.completeTask(${task.id})" class="border-2 border-green-500 bg-green-100 hover:bg-green-200 p-2 ml-2 rounded-full">✅</button>
-                <button onclick="vm.deleteTask(${task.id})" class="border-2 border-red-500 bg-red-100 hover:bg-red-200 p-2 ml-2 rounded-full">❌</button>
-                
+            <div class="flex justify-between items-center border-b border-gray-200 p-2">
+                <div class="flex flex-wrap gap-1">
+                    <strong class="font-bold">${task.title}</strong> | Responsavel: ${task.responsavel}<br>
+                    <small class="text-gray-600">${task.descricao} | Vence em: ${task.dataVenc}</small>
+                </div>
+                <div class="flex items-center justify-end gap-1">
+                    <button onclick="vm.completeTask(${task.id})" class="border-2 border-green-500 bg-green-100 hover:bg-green-200 p-2 ml-2 rounded-full">✅</button>
+                    <button onclick="vm.deleteTask(${task.id})" class="border-2 border-red-500 bg-red-100 hover:bg-red-200 p-2 ml-2 rounded-full">❌</button>
+                </div>
+            </div>
             `;
             this.listElement.appendChild(li);
         });
