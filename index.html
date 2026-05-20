@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head> 
+    <meta charset="UTF-8">
+    <title>Task Master - MVVM Edition</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="src/View/estilo.css"> </head>
+<body>
+    <div id="app" class="container">
+        <h1>Task Master (MVVM)</h1>
+       
+        <div class="form-group">
+            
+            <input type="text" id="taskTitle" name="title" placeholder="O titulo" autocomplete="off" class="flex flex-wrap justify-center items-center gap-2 mt-5 mb-5">
+            <input type="text" id="descricao" name="descricao" placeholder="Qual a descrição" autocomplete="off" class="flex border border-gray-300 w-50 p-2 rounded">
+            <input type="date" id="dataVenc" name="dataVenc" placeholder="Data de vencimento" autocomplete="off" class="flex border border-gray-300 w-50 p-2 rounded">
+            <input type="text" id="responsavel" name="responsavel" placeholder="Quem é o responsavel" autocomplete="off" class="flex border border-gray-300 w-50 p-2 rounded">
+            <button id="addBtn" class="bg-blue-700 hover:bg-blue-800 hover:shadow-lg hover:cursor-pointer text-white py-2 px-4 w-40 rounded">Adicionar</button>
+
+
+        
+    </form>
+        </div>
+
+        <ul id="taskList"></ul>
+    </div>
+
+    <script src="src/js/TaskViewModel.js"></script>
+</body>
+</html>
